@@ -7,13 +7,22 @@ module.exports = FrontMatterCompiler = (function() {
   FrontMatterCompiler.prototype.brunchPlugin = true;
   FrontMatterCompiler.prototype.type = 'template';
   FrontMatterCompiler.prototype.extension = 'md';
+  // Optional for different file extensions
+  FrontMatterCompiler.prototype.pattern = /(\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text))$/;
 
   FrontMatterCompiler.prototype.compile = function(data, path, callback) {
-    var compiled;
+    var err, error, result;
 
-    compiled = jsYaml.loadFront(data);
-    console.log(compiled);
-    return compiled;
+    try {
+      var compiled = jsYaml.loadFront(data);
+      console.log(compiled);
+      return result = compiled;
+    } catch (_error) {
+      err = _error;
+      return error = err;
+    } finally {
+      callback(error, result);
+    }
   };
 
   return FrontMatterCompiler;
