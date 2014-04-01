@@ -15,7 +15,7 @@ module.exports = FrontMatterCompiler = (function() {
 
     try {
       var compiled = jsYaml.loadFront(data);
-      console.log(compiled);
+      compiled = JSON.stringify(compiled);
       return result = compiled;
     } catch (_error) {
       err = _error;
