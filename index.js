@@ -1,11 +1,14 @@
 var FrontMatterCompiler;
 var jsYaml = require('yaml-front-matter');
+var marked = require('marked');
 
 module.exports = FrontMatterCompiler = (function() {
   function FrontMatterCompiler() {};
 
-  FrontMatterCompiler.prototype.modulesPrefix = 'module.exports = ';
+  // Set to true if you want to convert markdown to html before JSON is outputted
+  FrontMatterCompiler.prototype.precompileMarkdown = true;
 
+  FrontMatterCompiler.prototype.modulesPrefix = 'module.exports = ';
   FrontMatterCompiler.prototype.brunchPlugin = true;
   FrontMatterCompiler.prototype.type = 'template';
   FrontMatterCompiler.prototype.extension = 'md';
@@ -13,11 +16,18 @@ module.exports = FrontMatterCompiler = (function() {
   FrontMatterCompiler.prototype.pattern = /(\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text))$/;
 
   FrontMatterCompiler.prototype.compile = function(data, path, callback) {
+    var precompile = this.precompileMarkdown;
     var err, error, result;
 
     try {
       var compiled = jsYaml.loadFront(data);
+
+      if (precompile) {
+        compiled.__content = marked(compiled.__content);
+      }
+
       compiled = this.modulesPrefix + JSON.stringify(compiled);
+      console.log(compiled);
       return result = compiled;
     } catch (_error) {
       err = _error;
