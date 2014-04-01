@@ -4,6 +4,8 @@ var jsYaml = require('yaml-front-matter');
 module.exports = FrontMatterCompiler = (function() {
   function FrontMatterCompiler() {};
 
+  FrontMatterCompiler.prototype.modulesPrefix = 'module.exports = ';
+
   FrontMatterCompiler.prototype.brunchPlugin = true;
   FrontMatterCompiler.prototype.type = 'template';
   FrontMatterCompiler.prototype.extension = 'md';
@@ -15,7 +17,7 @@ module.exports = FrontMatterCompiler = (function() {
 
     try {
       var compiled = jsYaml.loadFront(data);
-      compiled = JSON.stringify(compiled);
+      compiled = this.modulesPrefix + JSON.stringify(compiled);
       return result = compiled;
     } catch (_error) {
       err = _error;
