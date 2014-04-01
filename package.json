@@ -1,6 +1,6 @@
 {
   "name": "yaml-front-matter-brunch",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Adds support for YAML Front Matter to Brunch-based apps",
   "main": "index.js",
   "scripts": {
