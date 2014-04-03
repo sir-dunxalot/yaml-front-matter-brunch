@@ -17,17 +17,18 @@ module.exports = FrontMatterCompiler = (function() {
 
   FrontMatterCompiler.prototype.compile = function(data, path, callback) {
     var precompile = this.precompileMarkdown;
+    var extension = this.extension;
     var err, error, result;
 
     try {
       var compiled = jsYaml.loadFront(data);
 
-      if (precompile) {
+      // Precompile if enabled and files are markdown
+      if (precompile && extension === 'md') {
         compiled.__content = marked(compiled.__content);
       }
 
       compiled = this.modulesPrefix + JSON.stringify(compiled);
-      console.log(compiled);
       return result = compiled;
     } catch (_error) {
       err = _error;
