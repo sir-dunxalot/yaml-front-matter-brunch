@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/sir-dunxalot/yaml-front-matter-brunch/issues"
   },
-  "homepage": "https://github.com/sir-dunxalot/yaml-front-matter-brunch"
+  "homepage": "https://github.com/sir-dunxalot/yaml-front-matter-brunch",
+  "dependencies": {
+    "highlight.js": "^8.0.0"
+  }
 }
