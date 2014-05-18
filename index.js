@@ -49,10 +49,3 @@ module.exports = FrontMatterCompiler = (function() {
 
   return FrontMatterCompiler;
 })();
-
-    // var codeBlocks = $('pre code');
-
-    // codeBlocks.each(function(i, el) {
-    //   var code = $(el).html();
-    //   hljs.highlightAuto(code).value;
-    // });
