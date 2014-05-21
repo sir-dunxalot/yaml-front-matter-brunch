@@ -22,8 +22,8 @@ module.exports = FrontMatterCompiler = (function() {
 
     if (this.highlightCode) {
       marked.setOptions({
-        highlight: function (code) {
-          return hljs.highlightAuto(code).value;
+        highlight: function (code, lang) {
+          return hljs.highlight(lang, code).value;
         }
       });
     };
