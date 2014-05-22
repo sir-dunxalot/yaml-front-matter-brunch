@@ -8,7 +8,6 @@ module.exports = FrontMatterCompiler = (function() {
 
   // Set to true if you want to convert markdown to html before JSON is outputted
   FrontMatterCompiler.prototype.precompileMarkdown = true;
-  FrontMatterCompiler.prototype.highlightCode = true;
 
   FrontMatterCompiler.prototype.modulesPrefix = 'module.exports = ';
   FrontMatterCompiler.prototype.brunchPlugin = true;
@@ -20,13 +19,16 @@ module.exports = FrontMatterCompiler = (function() {
   FrontMatterCompiler.prototype.compile = function(data, path, callback) {
     var err, error, result;
 
-    if (this.highlightCode) {
-      marked.setOptions({
-        highlight: function (code, lang) {
+    marked.setOptions({
+      highlight: function (code, lang) {
+        if (lang) {
           return hljs.highlight(lang, code).value;
+        } else {
+          return hljs.highlightAuto(code).value;
         }
-      });
-    };
+      },
+      smartypants: true
+    });
 
     try {
       var compiled = jsYaml.loadFront(data);
