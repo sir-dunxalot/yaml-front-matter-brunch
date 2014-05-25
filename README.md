@@ -1,18 +1,68 @@
 yaml-front-matter-brunch
 ======
 
-Adds brunch support for YAML Front Matter
+***Verison 0.2.6***
+
+This [Brunch](http://brunch.io/) plugin compiles markdown files with YAML front matter into javascript objects.
 
 Installation
 ------
 
+In a node project run:
+
 ```
-npm install yaml-front-matter-brunch
+npm install yaml-front-matter-brunch --save
 ```
 
 Usage
 ------
 
-See the `index.js` file to change the extension type depending on whether you're parsing markdown, handlebars, etc. Default is `md` (markdown).
+This Brunch plugin takes a markdown file like this this...
 
-Please feel free to contact me (walkerdu@bc.edu) if you have any questions or issues.
+```markdown
+---
+title: I like Bacon
+description: Bacon is great - let me tell you why I like it.
+published: 2014-04-15
+author: Dave
+categories:
+ - food
+ - breakfast
+---
+
+Bacon
+======
+
+Bacon is great! We all like [Bacon](//en.wikipedia.org/wiki/Bacon).
+```
+
+... And compiles it into an object like this...
+
+```js
+module.exports = {"title":"I like Bacon","description":"Bacon is great - let me tell you why I like it.","published":"2014-04-15T00:00:00.000Z","author":"Dave","categories":["food","breakfast"],"__content":"<h1>Bacon</h1><p>Bacon is great! We all like <a href=\"//en.wikipedia.org/wiki/Bacon\">Bacon</a>"}
+```
+
+Essentially, the file content is overwritten with the javascript object.
+
+- Markdown is parsed using [marked](https://github.com/chjj/marked).
+- Code is highlighted using [highlight.js](http://highlightjs.org/).
+
+Despite still being a `.md` file, The module is made acessible to the rest of the app based on its filename.
+
+For example, if you are watching a bunch of `.md` files in a `posts` directory, you can find and use all the post objects in your Brunch app like this:
+
+```js
+var listOfPosts = [];
+
+window.require.list().filter(function(module) {
+  return new RegExp('^posts/').test(module);
+}).forEach(function(module) {
+  var post = require(module);
+  listOfPosts.push(post);
+});
+```
+
+Questions and Comments
+------
+
+Open an [issue](https://github.com/sir-dunxalot/yaml-front-matter-brunch/issues/new), fork and PR, or tweet @Sir_Dunxalot
