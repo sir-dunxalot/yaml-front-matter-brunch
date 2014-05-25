@@ -8,6 +8,8 @@ This [Brunch](http://brunch.io/) plugin compiles markdown files with YAML front 
 Installation
 ------
 
+In a node project run:
+
 ```
 npm install yaml-front-matter-brunch --save
 ```
