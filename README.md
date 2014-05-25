@@ -3,7 +3,7 @@ yaml-front-matter-brunch
 
 ***Verison 0.2.6***
 
-This Brunch plugin compiles markdown files with YAML front matter into javascript objects.
+This [Brunch](http://brunch.io/) plugin compiles markdown files with YAML front matter into javascript objects.
 
 Installation
 ------
@@ -47,7 +47,7 @@ Essentially, the file content is overwritten with the javascript object.
 
 Despite still being a `.md` file, The module is made acessible to the rest of the app based on its filename.
 
-For example, if you are watching a bunch of `.md` files in a `posts` directory, you can find and use all the post objects in your node app like this:
+For example, if you are watching a bunch of `.md` files in a `posts` directory, you can find and use all the post objects in your Brunch app like this:
 
 ```js
 var listOfPosts = [];
