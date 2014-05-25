@@ -40,13 +40,14 @@ Bacon is great! We all like [Bacon](//en.wikipedia.org/wiki/Bacon).
 module.exports = {"title":"I like Bacon","description":"Bacon is great - let me tell you why I like it.","published":"2014-04-15T00:00:00.000Z","author":"Dave","categories":["food","breakfast"],"__content":"<h1>Bacon</h1><p>Bacon is great! We all like <a href=\"//en.wikipedia.org/wiki/Bacon\">Bacon</a>"}
 ```
 
+Essentially, the file content is overwritten with the javascript object.
+
 - Markdown is parsed using [marked](https://github.com/chjj/marked).
 - Code is highlighted using [highlight.js](http://highlightjs.org/).
 
+Despite still being a `.md` file, The module is made acessible to the rest of the app based on its filename.
 
-The module is made acessible to the rest of the app based on its filename.
-
-For example, if you are watching a bunch of `.md` files in a `posts` directory, you can compile all the objects in your node app like this:
+For example, if you are watching a bunch of `.md` files in a `posts` directory, you can find and use all the post objects in your node app like this:
 
 ```js
 var listOfPosts = [];
