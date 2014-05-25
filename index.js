@@ -27,7 +27,6 @@ module.exports = FrontMatterCompiler = (function() {
           return hljs.highlightAuto(code).value;
         }
       },
-      smartypants: true
     });
 
     try {
